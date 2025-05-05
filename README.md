@@ -1,5 +1,13 @@
-# Ticket Booking Backend API
-It's Ticket booking backend api build using `Java` and `Spring Boot`
+# Ticket Booking System
+It's ticket booking microservice build using `Java` and `Spring Boot`
 
-## Authors
-- [@sayancoding](https://www.github.com/sayancoding)
+Authors : [@sayancoding](https://www.github.com/sayancoding)
+
+```
+Tech stack used :
+
+Primary : Java
+Framework : Spring boot, Spring Cloud
+Messesing (Async) : Apache Kafka
+
+```
