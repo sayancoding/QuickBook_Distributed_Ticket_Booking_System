@@ -1,0 +1,23 @@
+##PORT
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+
+  ## mysql connection
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/ticket-booking-db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  ## jpa properties
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
