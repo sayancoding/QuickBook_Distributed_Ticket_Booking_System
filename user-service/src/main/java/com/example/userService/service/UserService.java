@@ -37,7 +37,7 @@ public class UserService {
         User user = userDao.findByEmailId(emailId)
                 .orElseThrow(()->new NotFoundException(emailId +" : User Not found"));
         if(!user.getUsername().equals(getCurrentUsername())){
-            throw new NotFoundException("No found");
+            throw new NotFoundException("Not found");
         }
 
         UserDto userDto = new UserDto();

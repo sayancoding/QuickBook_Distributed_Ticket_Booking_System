@@ -21,3 +21,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
+
+jwt:
+  token:
+    secret : 5367566859703373367639792F423F452848284D6251655468576D5A71347437
+    expiryDurationInMin : 15
