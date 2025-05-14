@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ticket-booking-db
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - my-spring-network
+
+  user-service:
+    build: .
+    container_name: user-service
+    networks:
+      - my-spring-network
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: ticket-booking-db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      APP_PORT: 8080
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data:
+
+networks:
+  my-spring-network:
