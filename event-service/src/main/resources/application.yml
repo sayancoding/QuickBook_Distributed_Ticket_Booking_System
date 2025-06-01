@@ -6,6 +6,11 @@ spring:
   application:
     name: event-service
 
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: dd-MM-yyyy HH:mm:ss
+
   ## mysql connection
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:ticket-booking-db}?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false

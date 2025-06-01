@@ -22,8 +22,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public String createEvent(EventNewRequest eventRequest) {
         Event event = new Event();
-//        eventRequest.setCreatedAt(LocalDateTime.now());
-//        eventRequest.setUpdatedAt(LocalDateTime.now());
         BeanUtils.copyProperties(eventRequest,event);
         eventDao.save(event);
         return "New Event is created.";
@@ -44,10 +42,8 @@ public class EventServiceImpl implements EventService {
         log.info(eventDao.findByTitle(title).toString());
         return eventDao.findByTitle(title).orElseThrow().stream().map(
                 e -> {
-                    log.info(e.toString());
                     EventResponse response = new EventResponse();
                     BeanUtils.copyProperties(e, response);
-                    log.info(response.toString());
                     return response;
                 }).collect(Collectors.toList());
     }

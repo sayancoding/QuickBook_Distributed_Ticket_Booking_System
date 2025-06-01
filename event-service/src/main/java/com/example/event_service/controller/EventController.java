@@ -1,7 +1,10 @@
 package com.example.event_service.controller;
 
+import com.example.event_service.dto.EventInstanceRequest;
+import com.example.event_service.dto.EventInstanceResponse;
 import com.example.event_service.dto.EventNewRequest;
 import com.example.event_service.dto.EventResponse;
+import com.example.event_service.service.EventInstanceService;
 import com.example.event_service.service.EventService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,8 @@ import java.util.List;
 public class EventController {
     @Autowired
     private EventService eventService;
+    @Autowired
+    private EventInstanceService eventInstanceService;
 
     @PostMapping
     public ResponseEntity<String> createEvent(@RequestBody EventNewRequest request){
@@ -25,6 +30,11 @@ public class EventController {
         request.setCreatedAt(LocalDateTime.now());
         request.setUpdatedAt(LocalDateTime.now());
         return new ResponseEntity<>(eventService.createEvent(request), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/instance")
+    public ResponseEntity<String> createEventInstance(@RequestBody EventInstanceRequest request){
+        return new ResponseEntity<>(eventInstanceService.createEventInstance(request), HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -37,7 +47,6 @@ public class EventController {
             @RequestParam(name = "id",required = false) String id,
             @RequestParam(name = "title", required = false) String title
     ){
-        log.info("id:"+ id + " title:" + title);
         if(id !=null){
             return new ResponseEntity<>(eventService.getEventById(Integer.parseInt(id)), HttpStatus.OK);
         }
@@ -45,5 +54,14 @@ public class EventController {
             return new ResponseEntity<>(eventService.getEventByTitle(title), HttpStatus.OK);
         }
         return new ResponseEntity<>(eventService.getAllEvent(), HttpStatus.OK);
+    }
+
+    @GetMapping("/instance")
+    public ResponseEntity<List<EventInstanceResponse>> findAllInstances(){
+        return new ResponseEntity<>(eventInstanceService.findAllInstances(), HttpStatus.OK);
+    }
+    @GetMapping("/instance/{id}")
+    public ResponseEntity<EventInstanceResponse> findInstancesById(@PathVariable Long id){
+        return new ResponseEntity<>(eventInstanceService.findByInstanceId(id), HttpStatus.OK);
     }
 }

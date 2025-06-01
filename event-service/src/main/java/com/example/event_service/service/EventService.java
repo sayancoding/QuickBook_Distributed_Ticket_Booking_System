@@ -2,7 +2,6 @@ package com.example.event_service.service;
 
 import com.example.event_service.dto.EventNewRequest;
 import com.example.event_service.dto.EventResponse;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
