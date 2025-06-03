@@ -11,6 +11,18 @@ spring:
       write-dates-as-timestamps: false
     date-format: dd-MM-yyyy HH:mm:ss
 
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+    consumer:
+      group-id: venue-service-group
+#      auto-offset-reset: earliest
+#      enable-auto-commit: true
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
   ## mysql connection
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:ticket-booking-db}?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false

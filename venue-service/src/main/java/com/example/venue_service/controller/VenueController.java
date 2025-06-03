@@ -5,6 +5,7 @@ import com.example.venue_service.dto.VenueDto;
 import com.example.venue_service.dto.VenueRequest;
 import com.example.venue_service.service.VenueSeatLayoutService;
 import com.example.venue_service.service.VenueService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class VenueController {
     private VenueSeatLayoutService venueSeatLayoutService;
 
     @PostMapping
-    public String addVenue(@RequestBody VenueRequest venueRequest) {
+    public String addVenue(@RequestBody VenueRequest venueRequest) throws JsonProcessingException {
         return venueService.addVenue(venueRequest);
     }
 

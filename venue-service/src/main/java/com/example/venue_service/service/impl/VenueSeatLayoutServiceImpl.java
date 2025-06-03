@@ -5,6 +5,7 @@ import com.example.venue_service.dto.LayoutConfig;
 import com.example.venue_service.dto.LayoutDto;
 import com.example.venue_service.model.VenueSeatLayout;
 import com.example.venue_service.service.VenueSeatLayoutService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class VenueSeatLayoutServiceImpl implements VenueSeatLayoutService {
     @Autowired
     private SeatLayoutDao seatLayoutDao;
@@ -31,6 +33,7 @@ public class VenueSeatLayoutServiceImpl implements VenueSeatLayoutService {
             }
         });
         seatLayoutDao.saveAll(seatLayouts);
+        log.info("Seat layout generated for venue ID: {}", venueId);
         return "Seat Layout Generated Successfully";
     }
 
