@@ -12,14 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventInstanceRequest {
-    private String eventId;
-    private Integer venueId;
+    private Long eventId;
+    private Long venueId;
     private String language;
     private String startTime;
     private String endTime;
     private String status;
 
-    private List<InstanceDefaultPrice> defaultPrices;
+    private List<InstanceDefaultPriceDto> defaultPrices;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

@@ -14,8 +14,8 @@ import java.util.List;
 public class EventInstanceResponse {
     private Long eventInstanceId;
 
-    private String eventId;
-    private Integer venueId;
+    private Long eventId;
+    private Long venueId;
     private String language;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")

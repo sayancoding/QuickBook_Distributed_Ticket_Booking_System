@@ -1,13 +1,16 @@
 package com.example.event_service.service.impl;
 
 import com.example.event_service.dao.EventInstanceDao;
+import com.example.event_service.dto.EventInstanceCreate;
 import com.example.event_service.dto.EventInstanceRequest;
 import com.example.event_service.dto.EventInstanceResponse;
 import com.example.event_service.dto.InstanceDefaultPriceDto;
 import com.example.event_service.model.EventInstance;
 import com.example.event_service.model.InstanceDefaultPrice;
 import com.example.event_service.service.EventInstanceService;
+import com.example.event_service.service.KafkaEventService;
 import com.example.event_service.utils.DateTimeUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,10 @@ import java.util.List;
 public class EventInstanceServiceImpl implements EventInstanceService {
     @Autowired
     private EventInstanceDao eventInstanceDao;
+    @Autowired
+    private KafkaEventService kafkaEventService;
+
+    private final ObjectMapper om = new ObjectMapper();
     @Override
     public String createEventInstance(EventInstanceRequest request) {
         EventInstance eventInstance = new EventInstance();
@@ -41,6 +48,19 @@ public class EventInstanceServiceImpl implements EventInstanceService {
 
         eventInstance.setDefaultPrices(defaultPrices);
         eventInstanceDao.save(eventInstance);
+
+        EventInstanceCreate eventInstanceCreate = new EventInstanceCreate();
+        eventInstanceCreate.setEventInstanceId(eventInstance.getEventInstanceId());
+        eventInstanceCreate.setEventId(eventInstance.getEventId());
+        eventInstanceCreate.setVenueId(eventInstance.getVenueId());
+        eventInstanceCreate.setDefaultPrices(request.getDefaultPrices());
+
+        try {
+            kafkaEventService.sendMessage("event-instance-create", om.writeValueAsString(eventInstanceCreate));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Failed to send event instance creation message to kafka topic";
+        }
         return "New Event instance is created";
     }
 

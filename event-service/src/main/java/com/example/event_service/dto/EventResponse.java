@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class EventResponse {
-    private int eventId;
+    private Long eventId;
     private String title;
     private String description;
     private String category;

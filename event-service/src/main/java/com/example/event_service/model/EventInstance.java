@@ -19,8 +19,8 @@ public class EventInstance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long eventInstanceId;
 
-    private String eventId;
-    private Integer venueId;
+    private Long eventId;
+    private Long venueId;
     private String language;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
