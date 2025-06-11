@@ -1,6 +1,6 @@
 ##POR
 server:
-  port: ${APP_PORT:8081}
+  port: ${APP_PORT:8083}
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
 
   ## mysql connection
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3308}/${MYSQL_DB:ticket-booking-db}?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:ticket-booking-db}?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver

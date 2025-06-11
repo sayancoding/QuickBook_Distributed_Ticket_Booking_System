@@ -1,6 +1,6 @@
 ##PORT
 server:
-  port: ${APP_PORT:8083}
+  port: ${APP_PORT:8082}
 
 spring:
   application:
