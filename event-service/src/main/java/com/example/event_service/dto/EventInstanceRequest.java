@@ -1,6 +1,6 @@
 package com.example.event_service.dto;
 
-import com.example.event_service.model.InstanceDefaultPrice;
+import com.example.event_service.constants.enums.EventInstanceStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class EventInstanceRequest {
     private String language;
     private String startTime;
     private String endTime;
-    private String status;
+    private EventInstanceStatus status;
 
     private List<InstanceDefaultPriceDto> defaultPrices;
 

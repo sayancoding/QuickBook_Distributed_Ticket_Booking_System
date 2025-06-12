@@ -11,5 +11,6 @@ public interface VenueService {
     public String addVenue(VenueRequest venueRequest) throws JsonProcessingException;
     public List<VenueDto> findAllVenue();
     public VenueDto findVenueById(Long venueId);
+    public boolean hasVenueById(Long venueId);
 
 }

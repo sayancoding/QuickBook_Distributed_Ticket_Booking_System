@@ -1,5 +1,6 @@
 package com.example.event_service.model;
 
+import com.example.event_service.constants.enums.EventInstanceStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +25,7 @@ public class EventInstance {
     private String language;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String status;
+    private EventInstanceStatus status;
 
     @OneToMany(mappedBy = "eventInstance", cascade = CascadeType.ALL)
     private List<InstanceDefaultPrice> defaultPrices = new ArrayList<>();

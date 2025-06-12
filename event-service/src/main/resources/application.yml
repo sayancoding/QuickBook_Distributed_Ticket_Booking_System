@@ -27,3 +27,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
+
+service:
+  venue:
+    url: ${VENUE_SERVICE_URL:http://localhost:8082}
+
+kafka:
+  bootstrap-server: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+  consumer:
+    group-id: event-service-group
+  topic:
+    event-instance-created: event-instance-create

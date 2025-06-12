@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DefaultPriceDto {
     private String type;
-    private Integer price;
+    private int price;
 }

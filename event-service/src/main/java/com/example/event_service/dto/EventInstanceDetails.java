@@ -1,30 +1,27 @@
 package com.example.event_service.dto;
 
-import com.example.event_service.constants.enums.EventInstanceStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class EventInstanceResponse {
+public class EventInstanceDetails {
     private Long eventInstanceId;
-
     private Long eventId;
-    private Long venueId;
+    private String eventName;
+    private int durationInMin;
+    private String category;
     private String language;
+    private VenueDetails venueDetails;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime startTime;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime endTime;
 
-    private EventInstanceStatus status;
+    private String status;
 
     private List<InstanceDefaultPriceDto> defaultPrices;
 

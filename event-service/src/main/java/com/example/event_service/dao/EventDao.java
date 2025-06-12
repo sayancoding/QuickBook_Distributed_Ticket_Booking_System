@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface EventDao extends JpaRepository<Event,Integer> {
+public interface EventDao extends JpaRepository<Event,Long> {
     Optional<List<Event>> findByTitle(String title);
 }

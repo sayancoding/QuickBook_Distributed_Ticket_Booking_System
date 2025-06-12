@@ -1,9 +1,6 @@
 package com.example.event_service.controller;
 
-import com.example.event_service.dto.EventInstanceRequest;
-import com.example.event_service.dto.EventInstanceResponse;
-import com.example.event_service.dto.EventNewRequest;
-import com.example.event_service.dto.EventResponse;
+import com.example.event_service.dto.*;
 import com.example.event_service.service.EventInstanceService;
 import com.example.event_service.service.EventService;
 import lombok.extern.slf4j.Slf4j;
@@ -63,5 +60,10 @@ public class EventController {
     @GetMapping("/instance/{id}")
     public ResponseEntity<EventInstanceResponse> findInstancesById(@PathVariable Long id){
         return new ResponseEntity<>(eventInstanceService.findByInstanceId(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/instance/details/{id}")
+    public ResponseEntity<EventInstanceDetails> findInstanceDetailsById(@PathVariable Long id){
+        return new ResponseEntity<>(eventInstanceService.findInstanceDetailsById(id), HttpStatus.OK);
     }
 }

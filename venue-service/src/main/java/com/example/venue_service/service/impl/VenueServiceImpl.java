@@ -63,4 +63,9 @@ public class VenueServiceImpl implements VenueService {
         BeanUtils.copyProperties(venue, venueDto);
         return venueDto;
     }
+
+    @Override
+    public boolean hasVenueById(Long venueId) {
+        return venueDao.existsById(venueId);
+    }
 }

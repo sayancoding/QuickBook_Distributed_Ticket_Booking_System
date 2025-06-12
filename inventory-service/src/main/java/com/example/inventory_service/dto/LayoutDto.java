@@ -1,4 +1,4 @@
-package com.example.venue_service.dto;
+package com.example.inventory_service.dto;
 
 import lombok.Data;
 

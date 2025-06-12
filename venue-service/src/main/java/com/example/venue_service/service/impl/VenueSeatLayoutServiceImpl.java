@@ -45,6 +45,7 @@ public class VenueSeatLayoutServiceImpl implements VenueSeatLayoutService {
         List<LayoutDto> layoutDtos = new ArrayList<>();
         for (VenueSeatLayout layout : seatLayouts) {
             LayoutDto dto = new LayoutDto();
+            dto.setLayoutId(layout.getLayoutId());
             dto.setRowLabel(layout.getRowLabel());
             dto.setColumnNumber(layout.getColumnNumber());
             dto.setSeatType(layout.getSeatType());

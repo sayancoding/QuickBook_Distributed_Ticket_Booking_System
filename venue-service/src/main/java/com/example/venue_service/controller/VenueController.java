@@ -34,6 +34,12 @@ public class VenueController {
         return venueService.findVenueById(venueId);
     }
 
+    @GetMapping("/has/{venueId}")
+    public boolean hasVenueById(@PathVariable Long venueId) {
+        return venueService.hasVenueById(venueId);
+    }
+
+
     @GetMapping("/layout/{venueId}")
     public List<LayoutDto> getSeatLayoutByVenueId(@PathVariable Long venueId) {
         return venueSeatLayoutService.getSeatLayoutByVenueId(venueId);
