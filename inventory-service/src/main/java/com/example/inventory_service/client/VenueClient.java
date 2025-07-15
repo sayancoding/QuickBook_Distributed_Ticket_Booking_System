@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "venue-service", url = "http://localhost:8082/venue")
+@FeignClient(name = "venue-service", url = "${service.venue.baseUrl}/venue")
 public interface VenueClient {
     @GetMapping("/layout/{venueId}")
     public List<LayoutDto> getSeatLayoutByVenueId(@PathVariable Long venueId);

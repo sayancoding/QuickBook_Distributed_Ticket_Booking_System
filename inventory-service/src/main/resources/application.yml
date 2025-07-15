@@ -26,3 +26,16 @@ spring:
 jwt:
   token:
     secret : 5367566859703373367639792F423F452848284D6251655468576D5A71347437
+
+services:
+  event:
+    baseUrl: ${EVENT_SERVICE_URL:http://localhost:8081}
+  venue:
+    baseUrl: ${VENUE_SERVICE_URL:http://localhost:8082}
+
+kafka:
+  bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+  consumer:
+    inv-service-group: inv-service-group
+  topics:
+    event-instance-create: event-instance-create

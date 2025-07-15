@@ -1,13 +1,13 @@
-# Ticket Booking System
-It's ticket booking microservice build using `Java` and `Spring Boot`
+# QuickBook – Scalable Ticket Booking & Reservation System
 
-Authors : [@sayancoding](https://www.github.com/sayancoding)
-
-```
+```text 
 Tech stack used :
 
 Primary : Java
 Framework : Spring boot, Spring Cloud
-Messesing (Async) : Apache Kafka
-
+Messaging (Async) : Apache Kafka,
+DB : MySql, MongoDB
 ```
+
+
+Authors : [@sayancoding](https://www.github.com/sayancoding)

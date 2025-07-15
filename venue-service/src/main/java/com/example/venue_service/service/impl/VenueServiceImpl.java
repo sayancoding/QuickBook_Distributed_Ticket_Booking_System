@@ -4,6 +4,7 @@ import com.example.venue_service.dao.VenueDao;
 import com.example.venue_service.dto.SeatLayoutEventDto;
 import com.example.venue_service.dto.VenueDto;
 import com.example.venue_service.dto.VenueRequest;
+import com.example.venue_service.exception.NotFoundException;
 import com.example.venue_service.model.Venue;
 import com.example.venue_service.service.KafkaEventService;
 import com.example.venue_service.service.VenueSeatLayoutService;
@@ -13,13 +14,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.example.venue_service.constant.Messages.NEW_VENUE_CREATE;
+
 @Service
 public class VenueServiceImpl implements VenueService {
+
+    @Value("${kafka.topics.venue-seat-layout}")
+    private String VENUE_LAYOUT_TOPIC;
     @Autowired
     private VenueDao venueDao;
     @Autowired
@@ -40,11 +47,9 @@ public class VenueServiceImpl implements VenueService {
         eventDto.setLayoutConfig(venueRequest.getLayoutConfig());
         ObjectMapper om = new ObjectMapper();
 
-        kafkaEventService.sendMessage("venue-seat-layout", om.writeValueAsString(eventDto));
+        kafkaEventService.sendMessage(VENUE_LAYOUT_TOPIC, om.writeValueAsString(eventDto));
 
-
-
-        return "New Venue Added Successfully";
+        return NEW_VENUE_CREATE;
     }
 
     @Override
@@ -58,7 +63,7 @@ public class VenueServiceImpl implements VenueService {
 
     @Override
     public VenueDto findVenueById(Long venueId) {
-        Venue venue = venueDao.findById(venueId).orElseThrow(() -> new RuntimeException("Venue not found"));
+        Venue venue = venueDao.findById(venueId).orElseThrow(() -> new NotFoundException("Venue not found with id : "+venueId));
         VenueDto venueDto = new VenueDto();
         BeanUtils.copyProperties(venue, venueDto);
         return venueDto;

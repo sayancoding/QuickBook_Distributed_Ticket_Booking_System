@@ -52,6 +52,8 @@ public class EventSeatInvServiceImpl implements EventSeatInvService{
 
             inventoryList.add(inventory);
         });
+        logger.info("Creating inventory for event instance ID: {}, total seats: {}",
+                    eventInstanceCreate.getEventInstanceId(), inventoryList.size());
         eventSeatInventoryDao.saveAll(inventoryList);
     }
 

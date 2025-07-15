@@ -3,6 +3,7 @@ package com.example.venue_service.service.impl;
 import com.example.venue_service.dao.SeatLayoutDao;
 import com.example.venue_service.dto.LayoutConfig;
 import com.example.venue_service.dto.LayoutDto;
+import com.example.venue_service.exception.NotFoundException;
 import com.example.venue_service.model.VenueSeatLayout;
 import com.example.venue_service.service.VenueSeatLayoutService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class VenueSeatLayoutServiceImpl implements VenueSeatLayoutService {
     private SeatLayoutDao seatLayoutDao;
 
     @Override
-    public String generateSeatLayout(LayoutConfig config,Long venueId) {
+    public void generateSeatLayout(LayoutConfig config, Long venueId) {
         List<VenueSeatLayout> seatLayouts = new ArrayList<>();
 
         config.getSeatTypeMap().forEach((row,type)->{
@@ -34,13 +35,12 @@ public class VenueSeatLayoutServiceImpl implements VenueSeatLayoutService {
         });
         seatLayoutDao.saveAll(seatLayouts);
         log.info("Seat layout generated for venue ID: {}", venueId);
-        return "Seat Layout Generated Successfully";
     }
 
     @Override
     public List<LayoutDto> getSeatLayoutByVenueId(Long venueId){
         List<VenueSeatLayout> seatLayouts = seatLayoutDao.findByVenueId(venueId)
-                .orElseThrow(() -> new RuntimeException("No seat layout found for the given venue ID"));
+                .orElseThrow(() -> new NotFoundException("No seat layout found for the given venue ID : " + venueId));
 
         List<LayoutDto> layoutDtos = new ArrayList<>();
         for (VenueSeatLayout layout : seatLayouts) {
