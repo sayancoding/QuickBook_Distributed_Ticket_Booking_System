@@ -12,4 +12,5 @@ public interface EventSeatInventoryDao extends JpaRepository<EventSeatInventory,
     // Additional query methods can be defined here if needed
     List<EventSeatInventory> findByEventInstanceId(Long eventInstanceId);
     List<EventSeatInventory> findByEventId(Long eventId);
+    List<EventSeatInventory> findBySeatIds(List<Long> seatId);
 }

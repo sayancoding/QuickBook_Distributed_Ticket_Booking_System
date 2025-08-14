@@ -1,5 +1,6 @@
 package com.example.inventory_service.dto;
 
+import com.example.inventory_service.enums.SeatStatus;
 import lombok.Data;
 
 @Data
@@ -11,6 +12,6 @@ public class EventSeatInventoryDto {
     private Long venueId;
     private Long seatId;
     private String seatType;
-    private String status; // e.g., "available", "booked", "reserved"
+    private SeatStatus status; // e.g., "available", "booked", "reserved"
     private int basePrice;
 }

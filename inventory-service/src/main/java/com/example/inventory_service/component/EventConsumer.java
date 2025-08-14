@@ -15,15 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventConsumer {
     @Value("${kafka.topic.event-instance-create}")
-    private String EVENT_LAYOUT_TOPIC;
+    public String EVENT_LAYOUT_TOPIC;
     @Value("${kafka.consumer.inv-service-group}")
-    private String INVENTORY_KAFKA_GROUP;
+    public String INVENTORY_KAFKA_GROUP;
     @Autowired
     private EventSeatInvService eventSeatInvService;
 
     private final Logger logger = LoggerFactory.getLogger(EventConsumer.class);
 
-    @KafkaListener(topics = "#{EVENT_LAYOUT_TOPIC}", groupId = "#{INVENTORY_KAFKA_GROUP}")
+    @KafkaListener(topics = "${kafka.topic.event-instance-create}", groupId = "${kafka.consumer.inv-service-group}")
     public void listen(String message) throws JsonProcessingException {
         logger.info("Received message: " + message);
         ObjectMapper om = new ObjectMapper();

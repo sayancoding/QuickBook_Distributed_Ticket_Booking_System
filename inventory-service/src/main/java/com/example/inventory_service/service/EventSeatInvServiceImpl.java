@@ -76,4 +76,18 @@ public class EventSeatInvServiceImpl implements EventSeatInvService{
         }).toList();
         return inventoryDtoList;
     }
+
+    @Override
+    public List<EventSeatInventoryDto> getInventoryBySeatIds(List<Long> seatId) {
+        return eventSeatInventoryDao.findBySeatIds(seatId).stream().map(inv ->{
+            EventSeatInventoryDto dto = new EventSeatInventoryDto();
+            BeanUtils.copyProperties(inv, dto);
+            return dto;
+        }).toList();
+    }
+
+    @Override
+    public EventSeatInventory updateSeatStatus(Long seatId, String status) {
+        return null;
+    }
 }

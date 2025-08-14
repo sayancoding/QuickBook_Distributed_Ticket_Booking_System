@@ -17,6 +17,7 @@ public class EventSeatInventory {
     private Long venueId;
     private Long seatId;
     private String seatType;
+    @Enumerated(EnumType.STRING)
     private SeatStatus status; // e.g., "available", "booked", "reserved"
     private int basePrice;
 }
